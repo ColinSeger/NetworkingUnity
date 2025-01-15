@@ -35,8 +35,8 @@ public class PlayerMoveNetwork : NetworkBehaviour
     }   
     private void HorizontalMovement(Vector2 moveDirection){
         moveDirection *= playerSpeed;
-        var tst = playerTransform.forward * moveDirection.y;
-        var bro = playerTransform.right * moveDirection.x;
+        Vector3 tst = playerTransform.forward * moveDirection.y;
+        Vector3 bro = playerTransform.right * moveDirection.x;
         myRigidbody.AddForce(tst + bro);        
     }
     private void MoveCamera(float lookValue){
