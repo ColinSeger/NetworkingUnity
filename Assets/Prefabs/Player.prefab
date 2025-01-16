@@ -14,12 +14,12 @@ GameObject:
   - component: {fileID: 5263598846131663049}
   - component: {fileID: 2137770862978332648}
   - component: {fileID: 4468107380087315798}
-  - component: {fileID: 3053324947354089574}
   - component: {fileID: -8736980900300208402}
   - component: {fileID: 6543266036353865150}
   - component: {fileID: -1211678818507662356}
   - component: {fileID: 2374980561219484734}
   - component: {fileID: 101106548213337182}
+  - component: {fileID: 5522766902385303024}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -171,21 +171,6 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
---- !u!114 &3053324947354089574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4274529129198914918}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01744a917d1aa3342906f2ae56764fbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  playerTransform: {fileID: 1239802281089664870}
-  playerSpeed: 10
 --- !u!114 &-8736980900300208402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +268,20 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   health:
     m_InternalValue: 100
+--- !u!114 &5522766902385303024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4274529129198914918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44e50e0afda9fe6db5e3c9129e6b2a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  prefab: {fileID: 9145348493112747220, guid: 80c3ab4fe0c4b1127827937707c95558, type: 3}
 --- !u!1 &5127100834027762462
 GameObject:
   m_ObjectHideFlags: 0
