@@ -280,7 +280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a88061f82189ad40ae8862a2602b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  ShowTopMostFoldoutHeaderGroup: 1
+  health:
+    m_InternalValue: 100
 --- !u!1 &5127100834027762462
 GameObject:
   m_ObjectHideFlags: 0

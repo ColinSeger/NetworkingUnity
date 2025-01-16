@@ -4,28 +4,29 @@ using UnityEngine;
 
 public class DealDamage : NetworkBehaviour
 {
-    [SerializeField] short damage;
+    [SerializeField] NetworkVariable<short> damage = new NetworkVariable<short>(1);
     HealthNetworked health;
     void Start()
     {
-        if(damage == 0){
-            damage = 1;
+    }
+    [Rpc(target:SendTo.Server)]
+    private void UpdateServerRpc(){
+        if(health){
+            health.DealDamage(damage.Value);
+            health = null;            
         }
     }
     [Rpc(target:SendTo.Server)]
-    private void UpdateServerRpc(short damage){
-        if(health){
-            health.DealDamage(damage);
-            health = null;            
-        }
+    private void UpdateCollisionRpc(){
+        this.gameObject.SetActive(false);
     }
     void OnCollisionEnter(Collision collision){
         health = collision.gameObject.GetComponent<HealthNetworked>();
 
         if(health){
-            UpdateServerRpc(damage);
+            UpdateServerRpc();
             //Debug.Log("!");
-            
         }
+        UpdateCollisionRpc();
     }
 }
