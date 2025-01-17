@@ -7,7 +7,7 @@ public class Emote : NetworkBehaviour
 {
     [SerializeField] GameObject[] prefab;
     InputAction emote;
-    bool isEmoting;
+    [SerializeField] NetworkVariable<bool> isEmoting = new NetworkVariable<bool>(false);
     void Start(){
         if(!IsOwner){
             enabled = false;
@@ -15,8 +15,7 @@ public class Emote : NetworkBehaviour
         emote = InputSystem.actions.FindAction("Jump");
     }
     public void Update(){
-        if(emote.IsPressed() && !isEmoting){
-            isEmoting = true;
+        if(emote.IsPressed() && !isEmoting.Value){
             SpawnEmoteRpc();
         }
     }
@@ -26,13 +25,14 @@ public class Emote : NetworkBehaviour
             yield return new WaitForFixedUpdate();
             time++;
         }
-        isEmoting = false;
+        isEmoting.Value = false;
         var networked = emote.GetComponent<NetworkObject>();
         networked.Despawn();
         Destroy(emote);
     }
     [Rpc(target:SendTo.Server)]
     private void SpawnEmoteRpc(){
+        isEmoting.Value = true;
         int index = Random.Range(0,prefab.Length);
         GameObject spawned = Instantiate(prefab[index]);
         var networked = spawned.GetComponent<NetworkObject>();

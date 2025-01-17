@@ -49,6 +49,8 @@ public class HealthNetworked : NetworkBehaviour
         var hitbox = this.gameObject.GetComponent<CapsuleCollider>();
         if(hitbox) hitbox.enabled = state;
         var body = this.gameObject.GetComponent<Rigidbody>();
-        body.useGravity = state;
+        if(body) body.useGravity = state;
+        var shoot = this.gameObject.GetComponent<ShootingNetworked>();
+        if(shoot && IsOwner) shoot.enabled = state;
     }
 }
