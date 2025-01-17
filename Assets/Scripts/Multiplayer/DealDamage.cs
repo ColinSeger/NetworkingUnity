@@ -9,17 +9,6 @@ public class DealDamage : NetworkBehaviour
     void Start()
     {
     }
-    [Rpc(target:SendTo.Server)]
-    private void UpdateServerRpc(){
-        if(health){
-            health.DealDamage(damage.Value);
-            health = null;            
-        }
-    }
-    [Rpc(target:SendTo.Server)]
-    private void UpdateCollisionRpc(){
-        this.gameObject.SetActive(false);
-    }
     void OnCollisionEnter(Collision collision){
         health = collision.gameObject.GetComponent<HealthNetworked>();
 
@@ -28,5 +17,16 @@ public class DealDamage : NetworkBehaviour
             //Debug.Log("!");
         }
         UpdateCollisionRpc();
+    }    
+    [Rpc(target:SendTo.Server)]
+    private void UpdateServerRpc(){
+        if(health){
+            health.DealDamage(damage.Value);
+            health = null;            
+        }
+    }
+    [Rpc(target:SendTo.Everyone)]
+    private void UpdateCollisionRpc(){
+        this.gameObject.SetActive(false);
     }
 }

@@ -13,13 +13,6 @@ public class ShootingNetworked : NetworkBehaviour
         }
         shootKey = InputSystem.actions.FindAction("Attack");
     }
-    [Rpc(target:SendTo.Server)]
-    private void UpdateServerRpc(float speed){
-        GameObject spawned = Instantiate(projectile, this.transform.position + this.transform.forward, new Quaternion(1,1,1,1));
-        var networked = spawned.GetComponent<NetworkObject>();
-        networked.Spawn();
-        StartCoroutine(UpdateProjectile(spawned, speed));
-    }
     IEnumerator UpdateProjectile(GameObject projectile, float speed){
         ushort time = 0;
         projectile.transform.rotation = this.transform.rotation;
@@ -37,5 +30,12 @@ public class ShootingNetworked : NetworkBehaviour
         if(shootKey.IsPressed()){
             UpdateServerRpc(2f);
         }
+    }    
+    [Rpc(target:SendTo.Server)]
+    private void UpdateServerRpc(float speed){
+        GameObject spawned = Instantiate(projectile, this.transform.position + this.transform.forward, new Quaternion(1,1,1,1));
+        var networked = spawned.GetComponent<NetworkObject>();
+        networked.Spawn();
+        StartCoroutine(UpdateProjectile(spawned, speed));
     }
 }

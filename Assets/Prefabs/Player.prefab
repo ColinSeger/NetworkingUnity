@@ -281,7 +281,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  prefab: {fileID: 9145348493112747220, guid: 80c3ab4fe0c4b1127827937707c95558, type: 3}
+  prefab:
+  - {fileID: 6117443675883149116, guid: da28c9bfa216bbb419b0508250fead40, type: 3}
+  - {fileID: 6117443675883149116, guid: 349d639906589784594bb6bfcd7cc1e8, type: 3}
+  - {fileID: 6117443675883149116, guid: b08085df2547bd74c9369061ce76be71, type: 3}
 --- !u!1 &5127100834027762462
 GameObject:
   m_ObjectHideFlags: 0
